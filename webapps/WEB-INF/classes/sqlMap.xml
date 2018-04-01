@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+            PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+            "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- SqlMap定義 -->
+<sqlMap namespace="user">
+
+	<!-- 指定したIDのを取得する -->
+	<select id="getUser"
+		parameterClass="jp.terasoluna.thin.tutorial.web.usermanager.dto.InsertInput"
+		resultClass="jp.terasoluna.thin.tutorial.web.usermanager.vo.SelectUserOutput">
+		SELECT
+			CUSTOMER_ID,
+			CUSTOMER_NAME,
+			ZIP_NO,
+			ADDRESS,
+			TEL,
+			MAIL,
+			SEX,
+			JOB_ID,
+			NOTE,
+			SALARY
+		FROM
+		  CUSTOMER
+		WHERE 
+		  CUSTOMER_ID = #customerId#
+	</select>
+
+	<!-- ユーザを挿入する -->
+	<insert id="insertUser"
+		parameterClass="jp.terasoluna.thin.tutorial.web.usermanager.dto.InsertInput">
+		INSERT INTO CUSTOMER (
+			CUSTOMER_ID,
+			CUSTOMER_NAME,
+			ZIP_NO,
+			ADDRESS,
+			TEL,
+			MAIL,
+			SEX,
+			JOB_ID,
+			NOTE,
+			SALARY
+		)VALUES(
+			#customerId#,
+			#customerName#,
+			#zipNo#,
+			#address#,
+			#tel#,
+			#mail#,
+			#sex#,
+			#jobId#,
+			#note#,
+			#salary#
+		)
+	</insert>
+	
+	<!-- 登録されているユーザの件数を取得する -->
+    <select id="getUserCount" 
+            resultClass="java.lang.String"
+            resultSetType="SCROLL_INSENSITIVE">
+        SELECT
+            COUNT(CUSTOMER_ID)
+        FROM
+            CUSTOMER
+    </select>
+    
+    <!-- 全ユーザを取得する -->
+    <select id="getUsers"
+        resultClass="jp.terasoluna.thin.tutorial.web.usermanager.vo.SelectUserOutput">
+                SELECT
+            CUSTOMER_ID,
+            CUSTOMER_NAME,
+            ZIP_NO,
+            ADDRESS,
+            TEL,
+            MAIL,
+            SEX,
+            JOB_ID,
+            NOTE,
+            SALARY
+        FROM
+          CUSTOMER
+    </select>
+</sqlMap>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE blogic-io PUBLIC "-//NTTDATA//DTD TERASOLUNA for Spring blogic-io 1.0//JA"
+                           "dtd/blogic-io.dtd">
+                           
+<!-- ビジネスロジック入出力定義 -->
+<blogic-io>
+
+
+  <!-- ビジネスロジック入出力定義 -->
+   <action path="/userManager/insertBL">
+     <blogic-params
+       bean-name="jp.terasoluna.thin.tutorial.web.usermanager.dto.InsertInput">
+       <set-property property="customerId" blogic-property="customerId" source="form" />
+       <set-property property="customerName" blogic-property="customerName" source="form" />
+       <set-property property="zipNo" blogic-property="zipNo" source="form" />
+       <set-property property="address" blogic-property="address" source="form" />
+       <set-property property="tel" blogic-property="tel" source="form" />
+       <set-property property="mail" blogic-property="mail" source="form" />
+       <set-property property="sex" blogic-property="sex" source="form" />
+       <set-property property="jobId" blogic-property="jobId" source="form" />
+       <set-property property="note" blogic-property="note" source="form" />
+       <set-property property="salary" blogic-property="salary" source="form" />
+     </blogic-params>
+   </action>
+   
+   <action path="/userManager/listBL">
+     <blogic-params
+       bean-name="jp.terasoluna.thin.tutorial.web.usermanager.dto.ListInput">
+       <set-property property="row" blogic-property="row" source="form" />
+       <set-property property="startIndex" blogic-property="startIndex" source="form" />
+     </blogic-params>
+     <blogic-result>
+       <set-property property="totalCount" blogic-property="totalCount" dest="form" />
+       <set-property property="users" blogic-property="users" dest="form" />
+     </blogic-result>
+   </action>
+   
+   
+</blogic-io>
